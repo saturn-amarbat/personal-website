@@ -67,6 +67,10 @@ Portfolio site is live on a custom domain and fully production-ready. Real conta
   - Added section anchor offsets for cleaner in-page navigation.
   - Added mobile safe-area spacing refinements for bottom dock devices.
   - Revalidated lint/build after updates.
+- Completed identity branding enhancement for recruiter recall:
+  - Added rotating 3D hero identity carousel highlighting name, build style, and internship target.
+  - Improved above-the-fold memorability of personal brand.
+  - Revalidated lint/build after implementation.
 
 ## In Progress
 

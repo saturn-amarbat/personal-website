@@ -72,11 +72,30 @@ const NAV_ITEMS = [
   { id: "contact", label: "Contact", icon: Mail },
 ];
 
+const IDENTITY_CARDS = [
+  {
+    label: "Name",
+    value: "Saturn Amarbat",
+    note: "Software Engineer",
+  },
+  {
+    label: "Build Style",
+    value: "Mobile x AI",
+    note: "Product-first execution",
+  },
+  {
+    label: "Current Goal",
+    value: "SWE/ML Internship",
+    note: "Summer/Fall ready",
+  },
+];
+
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
+  const [activeIdentityCard, setActiveIdentityCard] = useState(0);
 
   useEffect(() => {
     const onScroll = () => {
@@ -134,6 +153,14 @@ export default function Home() {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveIdentityCard((prev) => (prev + 1) % IDENTITY_CARDS.length);
+    }, 3200);
+
+    return () => window.clearInterval(interval);
   }, []);
 
   return (
@@ -219,6 +246,43 @@ export default function Home() {
           <p className="text-sm font-medium text-cyan-200/90">
             {CONFIG.name} • {CONFIG.role}
           </p>
+
+          <div
+            className="identity-stage mt-5 h-32 sm:h-36"
+            aria-label="Identity highlights"
+          >
+            {IDENTITY_CARDS.map((card, index) => {
+              const total = IDENTITY_CARDS.length;
+              const rawOffset = (index - activeIdentityCard + total) % total;
+              const offset = rawOffset === total - 1 ? -1 : rawOffset;
+              const isActive = offset === 0;
+
+              return (
+                <article
+                  key={card.label}
+                  className="identity-card"
+                  style={{
+                    transform:
+                      offset === 0
+                        ? "translateX(0) translateZ(0) rotateY(0deg)"
+                        : offset < 0
+                          ? "translateX(-36%) translateZ(-46px) rotateY(24deg)"
+                          : "translateX(36%) translateZ(-46px) rotateY(-24deg)",
+                    opacity: isActive ? 1 : 0.48,
+                    zIndex: isActive ? 3 : 1,
+                  }}
+                >
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-cyan-300/90">
+                    {card.label}
+                  </p>
+                  <p className="mt-1 text-lg font-semibold text-white sm:text-xl">
+                    {card.value}
+                  </p>
+                  <p className="mt-1 text-xs text-slate-300/85">{card.note}</p>
+                </article>
+              );
+            })}
+          </div>
 
           <h1 className="font-display max-w-3xl text-3xl font-bold leading-tight text-white md:text-5xl">
             Software engineer building mobile-first apps and practical AI
