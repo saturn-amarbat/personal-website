@@ -16,13 +16,14 @@ const CONFIG = {
   role: "Software Engineer | UIC Computer Science",
   location: "Chicago, IL",
   graduation: "Dec 2026",
-  email: "your@email.com",
+  email: "samarb2@uic.edu",
   githubUrl: "https://github.com/saturn-amarbat",
-  linkedinUrl: "https://linkedin.com/in/yourprofile",
-  calendlyUrl: "https://cal.com/your-handle",
-  resumeUrl: "/saturn_resume.pdf",
+  linkedinUrl: "https://www.linkedin.com/in/saturn-amarbat-tech",
+  calendarUrl:
+    "https://calendar.google.com/calendar/u/1?cid=c2FuY2hpcmFtYXJAZ21haWwuY29t",
+  resumeUrl: "/saturn_amarbat.pdf",
   pitch:
-    "I build mobile-first software and AI-integrated products. Right now I am focused on internship-ready engineering impact: shipping clean interfaces, strong backend logic, and reliable deployments.",
+    "I build mobile-first products and AI-powered software systems. I focus on fast, production-ready delivery with clean architecture and measurable product outcomes.",
   currentFocus: [
     "Mobile app business and product execution",
     "AI agent integrations for real workflows",
@@ -147,8 +148,13 @@ export default function Home() {
             <Rocket size={14} /> Available for SWE internships
           </p>
 
+          <p className="text-sm font-medium text-cyan-200/90">
+            {CONFIG.name} • {CONFIG.role}
+          </p>
+
           <h1 className="font-display max-w-3xl text-3xl font-bold leading-tight text-white md:text-5xl">
-            Building mobile-first products with AI-powered execution.
+            Software engineer building mobile-first apps and practical AI
+            integrations.
           </h1>
 
           <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300 md:text-lg">
@@ -183,7 +189,7 @@ export default function Home() {
           <div className="mt-8 grid gap-3 text-sm text-slate-300 md:grid-cols-3">
             <p className="rounded-xl border border-slate-800 bg-slate-900/60 px-3 py-2">
               <Briefcase size={14} className="mr-2 inline" /> Target: SWE/ML
-              Internship
+              Internships (Summer/Fall)
             </p>
             <p className="rounded-xl border border-slate-800 bg-slate-900/60 px-3 py-2">
               <MapPin size={14} className="mr-2 inline" /> {CONFIG.location}
@@ -269,9 +275,9 @@ export default function Home() {
               Current Specialization
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-300">
-              Direction: AI-native mobile product development. I am combining
-              product execution, software engineering depth, and practical AI
-              automation into one career lane.
+              AI-native mobile product engineering: shipping mobile app ideas,
+              integrating AI agents into workflows, and scaling toward full
+              product ownership.
             </p>
             <ul className="mt-4 space-y-2 text-sm text-slate-200">
               {CONFIG.currentFocus.map((focus) => (
@@ -293,8 +299,8 @@ export default function Home() {
               Contact
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-300">
-              Open to internship opportunities, project collaboration, and fast
-              execution roles.
+              Open to SWE/ML internship opportunities, product engineering
+              roles, and high-output project collaboration.
             </p>
             <div className="mt-5 space-y-3 text-sm">
               <a
@@ -318,13 +324,13 @@ export default function Home() {
                 <ArrowUpRight size={15} />
               </a>
               <a
-                href={CONFIG.calendlyUrl}
+                href={CONFIG.calendarUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 transition hover:border-cyan-300/40"
               >
                 <span className="inline-flex items-center gap-2">
-                  <Rocket size={15} /> Book a call
+                  <Rocket size={15} /> Calendar / Availability
                 </span>
                 <ArrowUpRight size={15} />
               </a>
