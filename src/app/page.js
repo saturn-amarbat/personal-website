@@ -60,11 +60,17 @@ const CONFIG = {
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const onScroll = () => {
       setIsScrolled(window.scrollY > 18);
       setScrollY(window.scrollY);
+
+      const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+      setScrollProgress(Math.min(1, Math.max(0, progress)));
     };
 
     onScroll();
@@ -103,9 +109,19 @@ export default function Home() {
         <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4 md:px-8">
           <a
             href="#home"
-            className="text-sm font-semibold tracking-[0.14em] text-cyan-300"
+            className="nav-signal inline-flex items-center gap-3 rounded-full border border-cyan-300/25 px-3 py-1.5 transition hover:border-cyan-200/40"
           >
-            SATURN
+            <span className="nav-orbit" aria-hidden="true">
+              <span className="nav-orbit-core" />
+            </span>
+            <span className="hidden text-left sm:block">
+              <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-300/95">
+                {scrollY > 200 ? "In Motion" : "Live Build"}
+              </span>
+              <span className="block text-[11px] text-slate-300/90">
+                {Math.round(scrollProgress * 100)}% scroll depth
+              </span>
+            </span>
           </a>
           <div className="hidden items-center gap-7 text-sm text-slate-300 md:flex">
             <a href="#projects" className="transition hover:text-white">
@@ -125,6 +141,11 @@ export default function Home() {
             Resume <ScrollText size={15} />
           </a>
         </nav>
+        <div
+          className="h-px bg-gradient-to-r from-cyan-300 via-sky-300 to-emerald-300 transition-[width] duration-200 ease-out"
+          style={{ width: `${Math.round(scrollProgress * 100)}%` }}
+          aria-hidden="true"
+        />
       </header>
 
       <main
