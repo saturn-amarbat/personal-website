@@ -39,10 +39,18 @@ Portfolio site is live on a custom domain and fully production-ready. Real conta
   - Google Calendar public link integrated.
   - Resume file: saturn_amarbat.pdf
   - Final validation: lint and build passing.
+- Added premium top-bar polish inspired by Lexus/Spotify direction:
+  - Section-aware animated nav signal copy (home/projects/focus/contact).
+  - Active section highlighting in desktop navigation.
+  - Continuous scroll progress line in header.
+- Completed smoothness pass across whole site:
+  - Refined motion continuity and transitions.
+  - Improved interactive feedback for cards and links.
+  - Preserved reduced-motion accessibility behavior.
 
 ## In Progress
 
-- Monitoring production and preparing post-launch polish.
+- Monitoring production and collecting feedback for next visual iteration.
 
 ## Next Actions
 

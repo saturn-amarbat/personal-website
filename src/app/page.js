@@ -57,18 +57,24 @@ const CONFIG = {
   ],
 };
 
-const NAV_PHRASES = [
-  "Shipping polished software",
-  "Designing with product intent",
-  "Building AI-powered workflows",
-  "Open for SWE/ML internships",
+const SECTION_COPY = {
+  home: "Open for SWE/ML internships",
+  projects: "Shipping polished software",
+  focus: "Building AI-powered workflows",
+  contact: "Lets build something real",
+};
+
+const NAV_ITEMS = [
+  { id: "projects", label: "Projects" },
+  { id: "focus", label: "Focus" },
+  { id: "contact", label: "Contact" },
 ];
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [navPhraseIndex, setNavPhraseIndex] = useState(0);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const onScroll = () => {
@@ -106,11 +112,26 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const interval = window.setInterval(() => {
-      setNavPhraseIndex((prev) => (prev + 1) % NAV_PHRASES.length);
-    }, 3200);
+    const sections = Array.from(
+      document.querySelectorAll("#home, #projects, #focus, #contact"),
+    );
+    if (!sections.length) return;
 
-    return () => window.clearInterval(interval);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible[0]?.target?.id) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { threshold: [0.35, 0.55, 0.75], rootMargin: "-12% 0px -55% 0px" },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -132,27 +153,33 @@ export default function Home() {
             </span>
             <span className="hidden text-left sm:block">
               <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-300/95">
-                {scrollY > 200 ? "In Motion" : "Live Build"}
+                {activeSection === "home" ? "Live Build" : "In Motion"}
               </span>
               <span
-                key={navPhraseIndex}
+                key={activeSection}
                 className="nav-copy-swap block text-[11px] text-slate-300/90"
               >
-                {NAV_PHRASES[navPhraseIndex]}
+                {SECTION_COPY[activeSection] ?? SECTION_COPY.home}
               </span>
             </span>
           </a>
-          <div className="hidden items-center gap-7 text-sm text-slate-300 md:flex">
-            <a href="#projects" className="transition hover:text-white">
-              Projects
-            </a>
-            <a href="#focus" className="transition hover:text-white">
-              Focus
-            </a>
-            <a href="#contact" className="transition hover:text-white">
-              Contact
-            </a>
+
+          <div className="hidden items-center gap-3 text-sm text-slate-300 md:flex">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`rounded-full px-3 py-1.5 transition ${
+                  activeSection === item.id
+                    ? "bg-cyan-300/12 text-cyan-200"
+                    : "hover:text-white"
+                }`}
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
+
           <a
             href={CONFIG.resumeUrl}
             className="inline-flex items-center gap-2 rounded-full border border-cyan-300/40 px-4 py-2 text-sm font-medium text-cyan-200 transition hover:border-cyan-200 hover:text-cyan-100"
@@ -160,6 +187,7 @@ export default function Home() {
             Resume <ScrollText size={15} />
           </a>
         </nav>
+
         <div
           className="h-px bg-gradient-to-r from-cyan-300 via-sky-300 to-emerald-300 transition-[width] duration-200 ease-out"
           style={{ width: `${Math.round(scrollProgress * 100)}%` }}
@@ -167,11 +195,9 @@ export default function Home() {
         />
       </header>
 
-      <main
-        id="home"
-        className="mx-auto w-full max-w-6xl px-5 pb-20 pt-10 md:px-8 md:pt-16"
-      >
+      <main className="mx-auto w-full max-w-6xl px-5 pb-20 pt-10 md:px-8 md:pt-16">
         <section
+          id="home"
           data-reveal
           className="reveal relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/30 p-8 md:p-12"
         >
