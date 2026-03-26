@@ -47,6 +47,14 @@ Portfolio site is live on a custom domain and fully production-ready. Real conta
   - Refined motion continuity and transitions.
   - Improved interactive feedback for cards and links.
   - Preserved reduced-motion accessibility behavior.
+- Completed mobile compatibility pass:
+  - Added sticky mobile bottom navigation dock with active section state.
+  - Improved mobile page spacing to avoid overlap with dock.
+  - Kept touch targets and section jumping clear for one-hand use.
+- Completed security hardening pass for portfolio hosting:
+  - Disabled x-powered-by header.
+  - Added secure HTTP headers (frame, MIME sniffing, referrer, permissions, COOP, CORP, HSTS).
+  - Revalidated lint/build after header configuration.
 
 ## In Progress
 
