@@ -13,9 +13,52 @@ const syne = Syne({
 });
 
 export const metadata = {
-  title: "Saturn Amarbat | Software Engineer",
+  metadataBase: new URL("https://saturnmade.tech"),
+  title: {
+    default: "Saturn Amarbat | Software Engineer",
+    template: "%s | Saturn Amarbat",
+  },
   description:
     "Portfolio of Saturn Amarbat, a UIC Computer Science student building mobile-first software and AI-integrated products.",
+  keywords: [
+    "Saturn Amarbat",
+    "software engineer portfolio",
+    "UIC computer science",
+    "mobile app developer",
+    "AI integration",
+    "SWE internship",
+  ],
+  authors: [{ name: "Saturn Amarbat", url: "https://saturnmade.tech" }],
+  creator: "Saturn Amarbat",
+  alternates: {
+    canonical: "https://saturnmade.tech",
+  },
+  openGraph: {
+    title: "Saturn Amarbat | Software Engineer",
+    description:
+      "Mobile-first software engineer building practical AI-integrated products. Open to SWE and ML internships.",
+    url: "https://saturnmade.tech",
+    siteName: "Saturn Amarbat Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Saturn Amarbat | Software Engineer",
+    description:
+      "Mobile-first software engineer building practical AI-integrated products. Open to SWE and ML internships.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }) {
