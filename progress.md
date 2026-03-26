@@ -67,5 +67,9 @@ git push -u origin main
 
 ## Deployment
 
-- Status: Ready to push to GitHub and import into Vercel.
-- Last commit: 34fea2f (real email + Google Calendar link)
+- Status: ✅ **LIVE**
+- Production URL: https://personal-website-mu-eight-76.vercel.app/
+- GitHub: https://github.com/saturn-amarbat/personal-website
+- Deployed: March 25, 2026
+- Framework: Next.js 16.2.1
+- Hosting: Vercel (auto-deploys on push to main)
