@@ -73,11 +73,28 @@ h4,
 }
 
 .nav-signal {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(
     135deg,
     rgba(14, 116, 144, 0.2),
     rgba(2, 132, 199, 0.08)
   );
+}
+
+.nav-signal::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    110deg,
+    transparent 10%,
+    rgba(103, 232, 249, 0.18) 45%,
+    transparent 80%
+  );
+  transform: translateX(-120%);
+  animation: signalSweep 4.6s ease-in-out infinite;
+  pointer-events: none;
 }
 
 .nav-orbit {
@@ -107,6 +124,10 @@ h4,
   animation: orbitPulse 2s ease-out infinite;
 }
 
+.nav-copy-swap {
+  animation: navCopyIn 350ms ease-out;
+}
+
 @keyframes orbitPulse {
   0% {
     box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.65);
@@ -131,6 +152,27 @@ h4,
   }
 }
 
+@keyframes signalSweep {
+  0% {
+    transform: translateX(-120%);
+  }
+  38%,
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes navCopyIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -140,8 +182,10 @@ h4,
   .reveal.is-visible,
   .tilt-card,
   .tilt-card:hover,
+  .nav-signal::after,
   .nav-orbit::before,
-  .nav-orbit-core {
+  .nav-orbit-core,
+  .nav-copy-swap {
     opacity: 1;
     transform: none;
     transition: none;

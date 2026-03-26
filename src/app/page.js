@@ -57,10 +57,18 @@ const CONFIG = {
   ],
 };
 
+const NAV_PHRASES = [
+  "Shipping polished software",
+  "Designing with product intent",
+  "Building AI-powered workflows",
+  "Open for SWE/ML internships",
+];
+
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [navPhraseIndex, setNavPhraseIndex] = useState(0);
 
   useEffect(() => {
     const onScroll = () => {
@@ -97,6 +105,14 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setNavPhraseIndex((prev) => (prev + 1) % NAV_PHRASES.length);
+    }, 3200);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
       <header
@@ -118,8 +134,11 @@ export default function Home() {
               <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-300/95">
                 {scrollY > 200 ? "In Motion" : "Live Build"}
               </span>
-              <span className="block text-[11px] text-slate-300/90">
-                {Math.round(scrollProgress * 100)}% scroll depth
+              <span
+                key={navPhraseIndex}
+                className="nav-copy-swap block text-[11px] text-slate-300/90"
+              >
+                {NAV_PHRASES[navPhraseIndex]}
               </span>
             </span>
           </a>
