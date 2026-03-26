@@ -36,7 +36,7 @@ Build and maintain a personal portfolio website for Saturn focused on SWE intern
 1. npm run lint passes.
 2. npm run build passes.
 3. Navigation and CTA links validated on mobile and desktop.
-4. Resume download path is valid (public/saturn_resume.pdf).
+4. Resume download path is valid (public/saturn_amarbat.pdf).
 
 ## Deployment Workflow
 
@@ -44,3 +44,9 @@ Build and maintain a personal portfolio website for Saturn focused on SWE intern
 2. Import repository into Vercel.
 3. Keep default framework settings for Next.js.
 4. Record production URL and deployment date in progress.md.
+
+## Session Close Workflow
+
+1. Run lint/build before ending if any code changed.
+2. Update progress.md with: what changed, latest commit hash, and next-session priority.
+3. Push final commit so Vercel stays in sync with GitHub main.
