@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import {
   ArrowUpRight,
   Briefcase,
+  House,
   Link,
   Mail,
   MapPin,
@@ -65,9 +66,10 @@ const SECTION_COPY = {
 };
 
 const NAV_ITEMS = [
-  { id: "projects", label: "Projects" },
-  { id: "focus", label: "Focus" },
-  { id: "contact", label: "Contact" },
+  { id: "home", label: "Home", icon: House },
+  { id: "projects", label: "Projects", icon: Briefcase },
+  { id: "focus", label: "Focus", icon: Rocket },
+  { id: "contact", label: "Contact", icon: Mail },
 ];
 
 export default function Home() {
@@ -165,7 +167,7 @@ export default function Home() {
           </a>
 
           <div className="hidden items-center gap-3 text-sm text-slate-300 md:flex">
-            {NAV_ITEMS.map((item) => (
+            {NAV_ITEMS.filter((item) => item.id !== "home").map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
@@ -195,7 +197,7 @@ export default function Home() {
         />
       </header>
 
-      <main className="mx-auto w-full max-w-6xl px-5 pb-20 pt-10 md:px-8 md:pt-16">
+      <main className="mx-auto w-full max-w-6xl px-5 pb-28 pt-10 md:px-8 md:pb-20 md:pt-16">
         <section
           id="home"
           data-reveal
@@ -404,6 +406,29 @@ export default function Home() {
           </article>
         </section>
       </main>
+
+      <nav className="fixed inset-x-0 bottom-3 z-40 mx-auto w-[94%] max-w-md rounded-2xl border border-slate-700/70 bg-slate-900/90 p-2 backdrop-blur md:hidden">
+        <ul className="grid grid-cols-4 gap-1">
+          {NAV_ITEMS.map((item) => {
+            const Icon = item.icon;
+            return (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className={`flex flex-col items-center justify-center gap-1 rounded-xl px-2 py-2 text-[10px] transition ${
+                    activeSection === item.id
+                      ? "bg-cyan-300/15 text-cyan-200"
+                      : "text-slate-300 hover:bg-slate-800/80"
+                  }`}
+                >
+                  <Icon size={14} />
+                  <span className="leading-none">{item.label}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
     </div>
   );
 }
