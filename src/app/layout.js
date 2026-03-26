@@ -13,7 +13,7 @@ const syne = Syne({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://saturnmade.tech"),
+  metadataBase: new URL("https://www.saturnmade.tech"),
   title: {
     default: "Saturn Amarbat | Software Engineer",
     template: "%s | Saturn Amarbat",
@@ -28,25 +28,34 @@ export const metadata = {
     "AI integration",
     "SWE internship",
   ],
-  authors: [{ name: "Saturn Amarbat", url: "https://saturnmade.tech" }],
+  authors: [{ name: "Saturn Amarbat", url: "https://www.saturnmade.tech" }],
   creator: "Saturn Amarbat",
   alternates: {
-    canonical: "https://saturnmade.tech",
+    canonical: "https://www.saturnmade.tech",
   },
   openGraph: {
     title: "Saturn Amarbat | Software Engineer",
     description:
       "Mobile-first software engineer building practical AI-integrated products. Open to SWE and ML internships.",
-    url: "https://saturnmade.tech",
+    url: "https://www.saturnmade.tech",
     siteName: "Saturn Amarbat Portfolio",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Saturn Amarbat portfolio preview",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Saturn Amarbat | Software Engineer",
     description:
       "Mobile-first software engineer building practical AI-integrated products. Open to SWE and ML internships.",
+    images: ["/twitter-image"],
   },
   robots: {
     index: true,

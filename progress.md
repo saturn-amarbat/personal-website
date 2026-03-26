@@ -55,10 +55,16 @@ Portfolio site is live on a custom domain and fully production-ready. Real conta
   - Disabled x-powered-by header.
   - Added secure HTTP headers (frame, MIME sniffing, referrer, permissions, COOP, CORP, HSTS).
   - Revalidated lint/build after header configuration.
+- Completed final SEO/indexing polish:
+  - Aligned canonical metadata to production host (www.saturnmade.tech).
+  - Added robots.txt route and sitemap.xml generation.
+  - Added web manifest for metadata completeness.
+  - Added dynamic Open Graph and Twitter preview image routes.
+  - Revalidated lint/build with all SEO routes active.
 
 ## In Progress
 
-- Monitoring production and collecting feedback for next visual iteration.
+- Monitoring production and collecting feedback for ongoing content updates.
 
 ## Next Actions
 
