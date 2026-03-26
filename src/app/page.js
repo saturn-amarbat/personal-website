@@ -1,64 +1,336 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState } from "react";
+import {
+  ArrowUpRight,
+  Briefcase,
+  Link,
+  Mail,
+  MapPin,
+  Rocket,
+  ScrollText,
+} from "lucide-react";
+
+const CONFIG = {
+  name: "Saturn Amarbat",
+  role: "Software Engineer | UIC Computer Science",
+  location: "Chicago, IL",
+  graduation: "Dec 2026",
+  email: "your@email.com",
+  githubUrl: "https://github.com/saturn-amarbat",
+  linkedinUrl: "https://linkedin.com/in/yourprofile",
+  calendlyUrl: "https://cal.com/your-handle",
+  resumeUrl: "/saturn_resume.pdf",
+  pitch:
+    "I build mobile-first software and AI-integrated products. Right now I am focused on internship-ready engineering impact: shipping clean interfaces, strong backend logic, and reliable deployments.",
+  currentFocus: [
+    "Mobile app business and product execution",
+    "AI agent integrations for real workflows",
+    "SWE/ML internship preparation and shipping velocity",
+  ],
+  featuredProjects: [
+    {
+      title: "Trade Ops",
+      summary:
+        "Automated US stock momentum scanner with bull-flag detection and Discord alerts for a real day-trading workflow.",
+      stack: ["Python", "Automation", "Discord API", "Trading Tools"],
+      link: "https://github.com/saturn-amarbat/trade-ops",
+      status: "Completed",
+    },
+    {
+      title: "Trials Of Tempo (Mobile)",
+      summary:
+        "In-progress mobile version of my rhythm-action game, focused on game feel, performance tuning, and iterative shipping.",
+      stack: ["JavaScript", "Mobile Web", "p5.js", "Game Systems"],
+      link: "https://github.com/saturn-amarbat/Trials-Of-Tempo-The-Game-Mobile-version",
+      status: "In Progress",
+    },
+    {
+      title: "Personal Memory Allocator",
+      summary:
+        "Custom allocator in C with a fixed heap and manual allocation API to demonstrate low-level systems thinking and memory control.",
+      stack: ["C", "Systems", "Memory Management", "Backend Foundations"],
+      link: "https://github.com/saturn-amarbat/Personal_Project_Memory_Allocator",
+      status: "Completed",
+    },
+  ],
+};
 
 export default function Home() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setIsScrolled(window.scrollY > 18);
+      setScrollY(window.scrollY);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const nodes = document.querySelectorAll("[data-reveal]");
+    if (!nodes.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" },
+    );
+
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <header
+        className={`sticky top-0 z-30 border-b transition-all ${
+          isScrolled
+            ? "border-cyan-400/20 bg-slate-950/95 backdrop-blur"
+            : "border-transparent bg-transparent"
+        }`}
+      >
+        <nav className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4 md:px-8">
+          <a
+            href="#home"
+            className="text-sm font-semibold tracking-[0.14em] text-cyan-300"
+          >
+            SATURN
+          </a>
+          <div className="hidden items-center gap-7 text-sm text-slate-300 md:flex">
+            <a href="#projects" className="transition hover:text-white">
+              Projects
+            </a>
+            <a href="#focus" className="transition hover:text-white">
+              Focus
+            </a>
+            <a href="#contact" className="transition hover:text-white">
+              Contact
+            </a>
+          </div>
+          <a
+            href={CONFIG.resumeUrl}
+            className="inline-flex items-center gap-2 rounded-full border border-cyan-300/40 px-4 py-2 text-sm font-medium text-cyan-200 transition hover:border-cyan-200 hover:text-cyan-100"
+          >
+            Resume <ScrollText size={15} />
+          </a>
+        </nav>
+      </header>
+
+      <main
+        id="home"
+        className="mx-auto w-full max-w-6xl px-5 pb-20 pt-10 md:px-8 md:pt-16"
+      >
+        <section
+          data-reveal
+          className="reveal relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/30 p-8 md:p-12"
+        >
+          <div
+            className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-cyan-400/20 blur-3xl"
+            style={{ transform: `translateY(${scrollY * -0.09}px)` }}
+          />
+          <div
+            className="pointer-events-none absolute -left-20 bottom-0 h-52 w-52 rounded-full bg-orange-300/10 blur-3xl"
+            style={{ transform: `translateY(${scrollY * 0.05}px)` }}
+          />
+
+          <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-emerald-400/10 px-3 py-1 text-xs font-medium text-emerald-200">
+            <Rocket size={14} /> Available for SWE internships
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          <h1 className="font-display max-w-3xl text-3xl font-bold leading-tight text-white md:text-5xl">
+            Building mobile-first products with AI-powered execution.
+          </h1>
+
+          <p className="mt-5 max-w-3xl text-base leading-7 text-slate-300 md:text-lg">
+            {CONFIG.pitch}
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
+            >
+              View Projects <ArrowUpRight size={16} />
+            </a>
+            <a
+              href={CONFIG.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-700 px-5 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-slate-500"
+            >
+              GitHub <Link size={16} />
+            </a>
+            <a
+              href={CONFIG.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-700 px-5 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-slate-500"
+            >
+              LinkedIn <Link size={16} />
+            </a>
+          </div>
+
+          <div className="mt-8 grid gap-3 text-sm text-slate-300 md:grid-cols-3">
+            <p className="rounded-xl border border-slate-800 bg-slate-900/60 px-3 py-2">
+              <Briefcase size={14} className="mr-2 inline" /> Target: SWE/ML
+              Internship
+            </p>
+            <p className="rounded-xl border border-slate-800 bg-slate-900/60 px-3 py-2">
+              <MapPin size={14} className="mr-2 inline" /> {CONFIG.location}
+            </p>
+            <p className="rounded-xl border border-slate-800 bg-slate-900/60 px-3 py-2">
+              Graduation: {CONFIG.graduation}
+            </p>
+          </div>
+        </section>
+
+        <section
+          id="projects"
+          data-reveal
+          className="reveal reveal-delay-1 mt-14"
+        >
+          <div className="mb-6 flex items-end justify-between">
+            <h2 className="font-display text-2xl font-semibold text-white md:text-3xl">
+              Featured Work
+            </h2>
+            <a
+              href={CONFIG.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-cyan-300 transition hover:text-cyan-200"
+            >
+              Browse all repositories
+            </a>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-3">
+            {CONFIG.featuredProjects.map((project) => (
+              <article
+                key={project.title}
+                className="tilt-card rounded-2xl border border-slate-800 bg-slate-900/70 p-5 transition hover:border-cyan-300/40"
+              >
+                <div className="mb-3 flex items-center justify-between gap-2">
+                  <h3 className="text-lg font-semibold text-white">
+                    {project.title}
+                  </h3>
+                  <span
+                    className={`rounded-full px-2.5 py-1 text-xs font-medium ${
+                      project.status === "In Progress"
+                        ? "bg-amber-400/20 text-amber-200"
+                        : "bg-emerald-400/20 text-emerald-200"
+                    }`}
+                  >
+                    {project.status}
+                  </span>
+                </div>
+                <p className="min-h-20 text-sm leading-6 text-slate-300">
+                  {project.summary}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {project.stack.map((item) => (
+                    <span
+                      key={`${project.title}-${item}`}
+                      className="rounded-full border border-slate-700 px-2.5 py-1 text-xs text-slate-300"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-cyan-300 transition hover:text-cyan-200"
+                >
+                  View project <ArrowUpRight size={15} />
+                </a>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section
+          id="focus"
+          data-reveal
+          className="reveal reveal-delay-2 mt-14 grid gap-5 md:grid-cols-2"
+        >
+          <article className="tilt-card rounded-2xl border border-slate-800 bg-slate-900/70 p-6">
+            <h2 className="font-display text-2xl font-semibold text-white">
+              Current Specialization
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-300">
+              Direction: AI-native mobile product development. I am combining
+              product execution, software engineering depth, and practical AI
+              automation into one career lane.
+            </p>
+            <ul className="mt-4 space-y-2 text-sm text-slate-200">
+              {CONFIG.currentFocus.map((focus) => (
+                <li
+                  key={focus}
+                  className="rounded-lg border border-slate-800 bg-slate-900 px-3 py-2"
+                >
+                  {focus}
+                </li>
+              ))}
+            </ul>
+          </article>
+
+          <article
+            id="contact"
+            className="tilt-card rounded-2xl border border-slate-800 bg-slate-900/70 p-6"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            <h2 className="font-display text-2xl font-semibold text-white">
+              Contact
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-300">
+              Open to internship opportunities, project collaboration, and fast
+              execution roles.
+            </p>
+            <div className="mt-5 space-y-3 text-sm">
+              <a
+                href={`mailto:${CONFIG.email}`}
+                className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 transition hover:border-cyan-300/40"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <Mail size={15} /> {CONFIG.email}
+                </span>
+                <ArrowUpRight size={15} />
+              </a>
+              <a
+                href={CONFIG.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 transition hover:border-cyan-300/40"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <Link size={15} /> LinkedIn
+                </span>
+                <ArrowUpRight size={15} />
+              </a>
+              <a
+                href={CONFIG.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-900 px-4 py-3 text-slate-100 transition hover:border-cyan-300/40"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <Rocket size={15} /> Book a call
+                </span>
+                <ArrowUpRight size={15} />
+              </a>
+            </div>
+          </article>
+        </section>
       </main>
     </div>
   );
