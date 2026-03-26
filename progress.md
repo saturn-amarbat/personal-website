@@ -23,6 +23,11 @@ Portfolio homepage now uses real featured repositories from saturn-amarbat, with
   - trade-ops
   - Trials-Of-Tempo-The-Game-Mobile-version
   - Personal_Project_Memory_Allocator
+- Completed recruiter-clarity copy pass:
+  - Hero headline and pitch rewritten for 10-second scanability.
+  - Name + role surfaced above headline.
+  - Internship targeting language made explicit.
+  - Specialization and contact copy sharpened for hiring context.
 - Re-validated quality gates after content personalization:
   - npm run lint passed.
   - npm run build passed.
