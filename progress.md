@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Portfolio homepage now uses real featured repositories from saturn-amarbat, with premium typography and smooth 3D-ish interactions. Lint and production build are passing.
+Portfolio site is fully personalized and production-ready. Real email (samarb2@uic.edu), Google Calendar link, featured projects, premium fonts, and smooth motion effects all configured. Ready for GitHub + Vercel deployment.
 
 ## Completed
 
@@ -34,28 +34,38 @@ Portfolio homepage now uses real featured repositories from saturn-amarbat, with
 - Verified quality gates:
   - npm run lint passed.
   - npm run build passed.
-  - npm run dev booted and compiled successfully.
+- Updated CONFIG with real contact details:
+  - Email: samarb2@uic.edu
+  - Google Calendar public link integrated.
+  - Resume file: saturn_amarbat.pdf
+  - Final validation: lint and build passing.
 
 ## In Progress
 
-- Final personalization pass for real contact links, resume file, and deploy metadata.
+- Ready for deployment.
 
 ## Next Actions
 
-1. Replace placeholder contact fields in CONFIG (email, LinkedIn, calendly).
-2. Add resume file at public/saturn_resume.pdf.
-3. Replace project placeholders with final project names, links, and screenshots.
-4. Configure git remote to the target repository.
-5. Commit and push to GitHub main branch.
-6. Import repo into Vercel and deploy.
-7. Record production URL and deployment timestamp in this file.
+### Ready to Deploy
+
+Run these commands to push to GitHub and deploy on Vercel:
+
+```bash
+# 1. Create new repo at GitHub: https://github.com/new (name: saturn-portfolio)
+# 2. Connect local repo and push:
+git remote add origin https://github.com/YOUR_USERNAME/saturn-portfolio.git
+git push -u origin main
+
+# 3. Go to Vercel: https://vercel.com
+# 4. Click "Import Project" → Select saturn-portfolio
+# 5. Deploy with default Next.js settings
+```
 
 ## Blockers
 
-- Missing finalized personal links (email, LinkedIn, calendly).
-- Missing resume file at public/saturn_resume.pdf.
-- No git remote configured yet, so deployment cannot start until repository link is added.
+- None. Site is fully configured and ready to ship.
 
 ## Deployment
 
-- Not deployed yet.
+- Status: Ready to push to GitHub and import into Vercel.
+- Last commit: 34fea2f (real email + Google Calendar link)
