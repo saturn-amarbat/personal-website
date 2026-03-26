@@ -61,6 +61,12 @@ Portfolio site is live on a custom domain and fully production-ready. Real conta
   - Added web manifest for metadata completeness.
   - Added dynamic Open Graph and Twitter preview image routes.
   - Revalidated lint/build with all SEO routes active.
+- Completed final conversion and mobile micro-optimization pass:
+  - Prioritized resume download CTA in hero for recruiter flow.
+  - Added explicit recruiter hint text near hero CTAs.
+  - Added section anchor offsets for cleaner in-page navigation.
+  - Added mobile safe-area spacing refinements for bottom dock devices.
+  - Revalidated lint/build after updates.
 
 ## In Progress
 

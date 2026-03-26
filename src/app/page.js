@@ -197,11 +197,11 @@ export default function Home() {
         />
       </header>
 
-      <main className="mx-auto w-full max-w-6xl px-5 pb-28 pt-10 md:px-8 md:pb-20 md:pt-16">
+      <main className="mx-auto w-full max-w-6xl px-5 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-10 md:px-8 md:pb-20 md:pt-16">
         <section
           id="home"
           data-reveal
-          className="reveal relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/30 p-8 md:p-12"
+          className="reveal scroll-mt-24 relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/30 p-8 md:p-12"
         >
           <div
             className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-cyan-400/20 blur-3xl"
@@ -231,8 +231,14 @@ export default function Home() {
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
-              href="#projects"
+              href={CONFIG.resumeUrl}
               className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
+            >
+              Download Resume <ScrollText size={16} />
+            </a>
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-700 px-5 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-slate-500"
             >
               View Projects <ArrowUpRight size={16} />
             </a>
@@ -254,6 +260,10 @@ export default function Home() {
             </a>
           </div>
 
+          <p className="mt-3 text-xs text-slate-400">
+            Best starting point for recruiters: resume and featured projects.
+          </p>
+
           <div className="mt-8 grid gap-3 text-sm text-slate-300 md:grid-cols-3">
             <p className="rounded-xl border border-slate-800 bg-slate-900/60 px-3 py-2">
               <Briefcase size={14} className="mr-2 inline" /> Target: SWE/ML
@@ -271,7 +281,7 @@ export default function Home() {
         <section
           id="projects"
           data-reveal
-          className="reveal reveal-delay-1 mt-14"
+          className="reveal reveal-delay-1 scroll-mt-24 mt-14"
         >
           <div className="mb-6 flex items-end justify-between">
             <h2 className="font-display text-2xl font-semibold text-white md:text-3xl">
@@ -336,7 +346,7 @@ export default function Home() {
         <section
           id="focus"
           data-reveal
-          className="reveal reveal-delay-2 mt-14 grid gap-5 md:grid-cols-2"
+          className="reveal reveal-delay-2 scroll-mt-24 mt-14 grid gap-5 md:grid-cols-2"
         >
           <article className="tilt-card rounded-2xl border border-slate-800 bg-slate-900/70 p-6">
             <h2 className="font-display text-2xl font-semibold text-white">
@@ -361,7 +371,7 @@ export default function Home() {
 
           <article
             id="contact"
-            className="tilt-card rounded-2xl border border-slate-800 bg-slate-900/70 p-6"
+            className="tilt-card scroll-mt-24 rounded-2xl border border-slate-800 bg-slate-900/70 p-6"
           >
             <h2 className="font-display text-2xl font-semibold text-white">
               Contact
@@ -407,7 +417,7 @@ export default function Home() {
         </section>
       </main>
 
-      <nav className="fixed inset-x-0 bottom-3 z-40 mx-auto w-[94%] max-w-md rounded-2xl border border-slate-700/70 bg-slate-900/90 p-2 backdrop-blur md:hidden">
+      <nav className="fixed inset-x-0 bottom-[calc(0.75rem+env(safe-area-inset-bottom))] z-40 mx-auto w-[94%] max-w-md rounded-2xl border border-slate-700/70 bg-slate-900/90 p-2 backdrop-blur md:hidden">
         <ul className="grid grid-cols-4 gap-1">
           {NAV_ITEMS.map((item) => {
             const Icon = item.icon;
