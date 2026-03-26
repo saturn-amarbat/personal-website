@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Portfolio site is fully personalized and production-ready. Real email (samarb2@uic.edu), Google Calendar link, featured projects, premium fonts, and smooth motion effects all configured. Ready for GitHub + Vercel deployment.
+Portfolio site is live on a custom domain and fully production-ready. Real contact details, featured projects, premium fonts, and motion effects are all configured and deployed.
 
 ## Completed
 
@@ -42,24 +42,14 @@ Portfolio site is fully personalized and production-ready. Real email (samarb2@u
 
 ## In Progress
 
-- Ready for deployment.
+- Monitoring production and preparing post-launch polish.
 
 ## Next Actions
 
-### Ready to Deploy
-
-Run these commands to push to GitHub and deploy on Vercel:
-
-```bash
-# 1. Create new repo at GitHub: https://github.com/new (name: saturn-portfolio)
-# 2. Connect local repo and push:
-git remote add origin https://github.com/YOUR_USERNAME/saturn-portfolio.git
-git push -u origin main
-
-# 3. Go to Vercel: https://vercel.com
-# 4. Click "Import Project" → Select saturn-portfolio
-# 5. Deploy with default Next.js settings
-```
+1. Add final project screenshots for each featured card.
+2. Connect Google Analytics or Vercel Analytics.
+3. Add one new project or blog update every 1-2 weeks.
+4. Keep resume PDF and project links current.
 
 ## Blockers
 
@@ -68,8 +58,10 @@ git push -u origin main
 ## Deployment
 
 - Status: ✅ **LIVE**
-- Production URL: https://personal-website-mu-eight-76.vercel.app/
+- Production URL: https://saturnmade.tech
+- Canonical redirect URL: https://www.saturnmade.tech/
+- Previous Vercel URL: https://personal-website-mu-eight-76.vercel.app/
 - GitHub: https://github.com/saturn-amarbat/personal-website
-- Deployed: March 25, 2026
+- Deployed: March 26, 2026 (custom domain connected)
 - Framework: Next.js 16.2.1
 - Hosting: Vercel (auto-deploys on push to main)
