@@ -1,10 +1,10 @@
 # Personal Portfolio Website
 
+[![Live Site](https://img.shields.io/badge/Live-saturnmade.tech-brightgreen?style=flat-square&logo=vercel&logoColor=white)](https://saturnmade.tech)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=nextdotjs)](https://nextjs.org)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES2024-yellow?style=flat-square&logo=javascript)](#)
-[![Status](https://img.shields.io/badge/status-in%20progress-orange?style=flat-square)](#)
 
-Personal portfolio website built with Next.js. Showcases projects, skills, and background for software engineering and AI engineering internship applications.
+Personal portfolio website live at **[saturnmade.tech](https://saturnmade.tech)**. Showcases projects, skills, and background for software engineering and AI engineering internship applications.
 
 ---
 
