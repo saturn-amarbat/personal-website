@@ -1,20 +1,15 @@
+import { profile } from "@/content/profile";
+
 export default function manifest() {
   return {
-    name: "Saturn Amarbat Portfolio",
+    name: `${profile.name} | Software Engineer`,
     short_name: "Saturn",
-    description:
-      "Portfolio of Saturn Amarbat, software engineer focused on mobile-first and AI-integrated products.",
+    description: `Full-stack, mobile, and applied AI engineering. UIC CS, expected ${profile.graduation}.`,
     start_url: "/",
     display: "standalone",
-    background_color: "#050913",
-    theme_color: "#050913",
+    background_color: "#101111",
+    theme_color: "#101111",
     lang: "en",
-    icons: [
-      {
-        src: "/favicon.ico",
-        sizes: "any",
-        type: "image/x-icon",
-      },
-    ],
+    icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml" }],
   };
 }

@@ -1,11 +1,9 @@
 import { ImageResponse } from "next/og";
+import { profile } from "@/content/profile";
 
-export const size = {
-  width: 1200,
-  height: 630,
-};
-
+export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+export const alt = `${profile.name} | ${profile.role}. UIC CS, expected ${profile.graduation}.`;
 
 export default function Image() {
   return new ImageResponse(
@@ -16,34 +14,49 @@ export default function Image() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        background: "linear-gradient(130deg, #050913, #0f172a 60%, #083344)",
-        color: "#e2e8f0",
-        padding: "56px",
+        background: "#101111",
+        color: "#f4f1eb",
+        padding: "64px",
         fontFamily: "sans-serif",
       }}
     >
       <div
         style={{
-          fontSize: 28,
-          letterSpacing: "0.18em",
-          textTransform: "uppercase",
-          color: "#67e8f9",
+          display: "flex",
+          justifyContent: "space-between",
+          fontSize: 24,
+          color: "#c2c0ba",
         }}
       >
-        Saturn Amarbat
+        <span>SOFTWARE ENGINEERING</span>
+        <span>{profile.location.toUpperCase()}</span>
       </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-        <div style={{ fontSize: 68, fontWeight: 700, lineHeight: 1.05 }}>
-          Software Engineer
+      <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        <div style={{ fontSize: 88, letterSpacing: "-0.05em" }}>
+          {profile.name}
         </div>
-        <div style={{ fontSize: 34, color: "#cbd5e1", maxWidth: "900px" }}>
-          Mobile-first apps and practical AI integrations
+        <div style={{ fontSize: 32 }}>{profile.role}</div>
+        <div style={{ fontSize: 26, color: "#c2c0ba" }}>
+          {`UIC Computer Science · Expected ${profile.graduation}`}
         </div>
       </div>
-      <div style={{ fontSize: 26, color: "#94a3b8" }}>www.saturnmade.tech</div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          borderTop: "1px solid #383a39",
+          paddingTop: 24,
+          fontSize: 22,
+          color: "#efae86",
+        }}
+      >
+        <span>saturnmade.tech</span>
+        <span>
+          {profile.internshipTarget} internships / {profile.newGradTarget}{" "}
+          new-grad roles
+        </span>
+      </div>
     </div>,
-    {
-      ...size,
-    },
+    size,
   );
 }

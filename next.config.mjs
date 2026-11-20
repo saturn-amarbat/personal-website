@@ -4,6 +4,10 @@ const nextConfig = {
   async headers() {
     return [
       {
+        source: "/saturn_amarbat.pdf",
+        headers: [{ key: "X-Robots-Tag", value: "noindex" }],
+      },
+      {
         source: "/(.*)",
         headers: [
           {

@@ -27,7 +27,7 @@ Build and maintain a personal portfolio website for Saturn focused on SWE intern
 
 ## Content Workflow
 
-1. Keep personal details and links in one CONFIG object in src/app/page.js.
+1. Keep personal details and experience in `src/content/profile.js`. Keep project descriptions and verified links in `src/content/projects.js`.
 2. Replace placeholders with real contact links, project links, resume, and images before final production launch.
 3. Keep the top projects section focused on strongest work and active build status.
 
@@ -36,7 +36,7 @@ Build and maintain a personal portfolio website for Saturn focused on SWE intern
 1. npm run lint passes.
 2. npm run build passes.
 3. Navigation and CTA links validated on mobile and desktop.
-4. Resume download path is valid (public/saturn_amarbat.pdf).
+4. If a resume is linked, check that the downloadable PDF is current and the URL works.
 
 ## Deployment Workflow
 
