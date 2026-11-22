@@ -23,7 +23,7 @@ export function WebsitePreview({
 
   function closeInline() {
     cancelTimer();
-    delete article.current.dataset.expanded;
+    delete article.current.dataset.previewActive;
     observer.current?.unobserve(inlineVideo.current);
     inlineVideo.current.pause();
   }
@@ -38,7 +38,7 @@ export function WebsitePreview({
 
     function reset() {
       window.clearTimeout(timer.current);
-      delete card.dataset.expanded;
+      delete card.dataset.previewActive;
       observer.current?.unobserve(video);
       video.pause();
     }
@@ -51,8 +51,8 @@ export function WebsitePreview({
     if ("IntersectionObserver" in window) {
       observer.current = new IntersectionObserver(
         ([entry]) => {
-          if (!card.hasAttribute("data-expanded")) return;
-          if (entry.intersectionRatio >= 0.2) {
+          if (!card.hasAttribute("data-preview-active")) return;
+          if (entry.intersectionRatio >= 0.2 && !document.hidden && allowsAutoPreview()) {
             if (!video.hasAttribute("src")) video.src = preview.src;
             video.play().catch((error) => {
               if (error.name !== "AbortError") reset();
@@ -84,20 +84,13 @@ export function WebsitePreview({
     )
       return;
     cancelTimer();
-    if (!observer.current || article.current.hasAttribute("data-expanded"))
+    if (!observer.current || article.current.hasAttribute("data-preview-active"))
       return;
     timer.current = window.setTimeout(() => {
       if (!allowsAutoPreview() || document.hidden) return;
-      article.current.dataset.expanded = "";
+      article.current.dataset.previewActive = "";
       observer.current.observe(inlineVideo.current);
     }, 150);
-  }
-
-  function scheduleClose() {
-    cancelTimer();
-    if (article.current.hasAttribute("data-expanded")) {
-      timer.current = window.setTimeout(closeInline, 240);
-    }
   }
 
   return (
@@ -105,9 +98,20 @@ export function WebsitePreview({
       <div
         className="project-thumbnail media-viewport"
         onPointerEnter={enterThumbnail}
-        onPointerLeave={scheduleClose}
+        onPointerLeave={closeInline}
+        onPointerCancel={closeInline}
       >
         <Image {...artwork} alt={artwork.alt} unoptimized />
+        <video
+          ref={inlineVideo}
+          aria-hidden="true"
+          preload="none"
+          muted
+          playsInline
+          poster={preview.poster}
+          width={preview.width}
+          height={preview.height}
+        />
       </div>
       <h3 id={id}>{title}</h3>
       {children}
@@ -122,23 +126,6 @@ export function WebsitePreview({
           autoPlay
           onOpen={closeInline}
         />
-      </div>
-      <div className="website-inline" aria-hidden="true">
-        <div
-          className="media-viewport"
-          onPointerEnter={cancelTimer}
-          onPointerLeave={scheduleClose}
-        >
-          <video
-            ref={inlineVideo}
-            preload="none"
-            muted
-            playsInline
-            poster={preview.poster}
-            width={preview.width}
-            height={preview.height}
-          />
-        </div>
       </div>
     </article>
   );
