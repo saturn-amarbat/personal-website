@@ -1,0 +1,49 @@
+name: Portfolio CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  portfolio:
+    name: Portfolio checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version: "24.x"
+          package-manager-cache: false
+      - name: Check whitespace and privacy
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          npm run check:privacy
+          base="$BASE_SHA"
+          if [ "$base" = "0000000000000000000000000000000000000000" ]; then
+            base="$(git hash-object -t tree -w /dev/null)"
+          fi
+          if ! git diff --check "$base" HEAD >/dev/null; then
+            echo "Whitespace check failed. Inspect git diff --check locally." >&2
+            exit 1
+          fi
+      - run: npm ci --no-audit
+      - run: npm run lint
+      - run: npm audit --omit=dev
+      - run: npm run build
+      - run: npm run check:production

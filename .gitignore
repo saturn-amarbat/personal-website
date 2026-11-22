@@ -23,6 +23,14 @@
 # misc
 .DS_Store
 *.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+
+# Only the approved public résumé belongs in Git.
+*.[pP][dD][fF]
+!/public/saturn_amarbat.pdf
 
 # debug
 npm-debug.log*

@@ -10,14 +10,18 @@ Personal portfolio website live at **[saturnmade.tech](https://saturnmade.tech)*
 
 ## 🚀 Running Locally
 
+Use Node.js 24.x.
+
 ```bash
 git clone https://github.com/saturn-amarbat/personal-website.git
 cd personal-website
-npm install
+npm ci
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+See [DEVELOPMENT.md](DEVELOPMENT.md) for CI, previews, and releases.
 
 ---
 
