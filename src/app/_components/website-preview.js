@@ -116,6 +116,7 @@ export function WebsitePreview({
         <MediaDialog
           id={id}
           title={title}
+          label={`Preview ${title}`}
           preview={preview}
           links={links}
           autoPlay
