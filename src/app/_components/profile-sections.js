@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowDown, ArrowUpRight, Download, MapPin, Plus } from "lucide-react";
+import { ArrowDown, ArrowUpRight, ChevronDown, Download, MapPin } from "lucide-react";
 import { experience, profile } from "@/content/profile";
 import { ExternalLink } from "./external-link";
 
@@ -21,11 +21,8 @@ export function Hero() {
           <a href={profile.resumeUrl} className="button primary" download>
             Download Résumé <Download size={16} aria-hidden="true" />
           </a>
-          <a href="#projects" className="button">
+          <a href="#projects" className="text-link">
             View projects <ArrowDown size={16} aria-hidden="true" />
-          </a>
-          <a href={`mailto:${profile.email}`} className="button">
-            Email me
           </a>
         </div>
         <p className="hero-foot">
@@ -116,7 +113,7 @@ export function Experience() {
       </ul>
       <details className="earlier-roles">
         <summary>
-          Earlier roles <Plus size={15} aria-hidden="true" />
+          Earlier roles <ChevronDown size={16} aria-hidden="true" />
         </summary>
         <ul>
           {earlierRoles.map((entry) => (

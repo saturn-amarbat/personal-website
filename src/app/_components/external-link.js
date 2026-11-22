@@ -1,10 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
 
-export function ExternalLink({ href, children, label }) {
+export function ExternalLink({ href, children, label, secondary = false }) {
   return (
     <a
       href={href}
-      className="text-link"
+      className={secondary ? "text-link secondary-link" : "text-link"}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}

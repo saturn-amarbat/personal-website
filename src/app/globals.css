@@ -189,7 +189,10 @@ h1 em {
   margin: 10px 0 22px;
 }
 .hero-actions {
-  gap: 10px;
+  gap: 4px 18px;
+}
+.hero-actions .text-link {
+  font-weight: 550;
 }
 .button {
   justify-content: center;
@@ -336,8 +339,8 @@ h2 {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 2px 14px;
-  padding: 8px 20px;
+  gap: 0 18px;
+  padding: 2px 20px 12px;
   color: var(--secondary);
   font-size: 13px;
   border-bottom: 1px solid var(--line);
@@ -356,7 +359,7 @@ h2 {
   outline-offset: 2px;
 }
 .gameplay-preview figcaption span {
-  flex: 1 1 175px;
+  flex-basis: 100%;
 }
 .project-body {
   flex: 1;
@@ -370,6 +373,15 @@ h2 {
 .project-summary {
   font-size: 15px;
   margin: 12px 0;
+  max-width: 62ch;
+}
+.hero-summary,
+.project-summary,
+.contribution,
+.about-copy p,
+.responsibilities li,
+.engineering-notes li {
+  text-wrap: pretty;
 }
 .tags {
   display: flex;
@@ -390,6 +402,9 @@ h2 {
 .project-links {
   margin-top: auto;
 }
+.secondary-link:not(:hover) {
+  color: var(--secondary);
+}
 details {
   border-top: 1px solid var(--line);
   margin-top: 8px;
@@ -406,8 +421,20 @@ summary {
 summary::-webkit-details-marker {
   display: none;
 }
-details[open] summary svg {
-  transform: rotate(45deg);
+summary svg {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+details[open] > summary svg {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+.notes-body,
+.earlier-roles > ul {
+  background: rgb(128 128 128 / 7%);
+  border-inline-start: 2px solid var(--line);
+  padding: 12px 14px;
+  margin-bottom: 8px;
 }
 .engineering-notes,
 .responsibilities {
@@ -419,8 +446,10 @@ details[open] summary svg {
   margin: 4px 0 10px;
   font-size: 14px;
 }
-.engineering-notes {
-  padding-bottom: 18px;
+.project-body > .contribution {
+  max-width: 58ch;
+  margin: 0 0 14px;
+  font-size: 15px;
 }
 .engineering-notes li + li,
 .responsibilities li + li {
@@ -583,7 +612,11 @@ details[open] summary svg {
   color: var(--secondary);
 }
 .experience-list .experience-entry {
-  border-color: var(--accent);
+  border: 0;
+  padding-top: 0;
+}
+.experience-list .experience-dates {
+  color: var(--accent);
 }
 .experience-entry h3 {
   font-size: 21px;
@@ -599,12 +632,23 @@ details[open] summary svg {
 .earlier-roles .experience-entry {
   padding: 10px 0;
 }
+.earlier-roles .experience-entry:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.earlier-roles .experience-entry:last-child {
+  padding-bottom: 0;
+}
 .earlier-roles h3 {
   font-size: 17px;
 }
 .contact {
+  align-items: flex-end;
   padding: clamp(24px, 3.4vw, 50px);
   background: #282724;
+}
+.contact h2 {
+  margin-bottom: 6px;
 }
 .contact-email {
   color: var(--accent);
@@ -643,6 +687,7 @@ details[open] summary svg {
 
   .stagecraft,
   .trials-of-tempo-mobile {
+    grid-column: span 6;
     padding: 0;
   }
   .work-grid > .project:nth-child(n + 3) {
@@ -681,6 +726,12 @@ details[open] summary svg {
   }
   .introduction {
     padding: 25px;
+  }
+  .hero-actions {
+    column-gap: 12px;
+  }
+  .hero-actions .button {
+    padding-inline: 14px;
   }
   .portrait {
     min-height: 0;
@@ -726,27 +777,13 @@ details[open] summary svg {
   .trials-of-tempo-mobile .project-body {
     padding: 0 20px 6px;
   }
-  .contact,
-  .site-footer {
+  .contact {
     align-items: flex-start;
     flex-direction: column;
     gap: 6px;
   }
   .site-footer {
-    padding: 20px 0;
-  }
-}
-@media (max-width: 400px) {
-  .gameplay-preview figcaption {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    justify-items: start;
-    gap: 4px;
-    padding-bottom: 14px;
-  }
-  .gameplay-preview figcaption > span {
-    grid-row: 2;
-    grid-column: 1 / -1;
+    min-height: 68px;
   }
 }
 .project.tile:focus-within {
