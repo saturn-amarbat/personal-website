@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:privacy": "node scripts/check-privacy.mjs",
+    "check:production": "node scripts/check-production.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.7.0",
