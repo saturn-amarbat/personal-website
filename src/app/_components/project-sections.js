@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { GameplayPreview } from "./gameplay-preview";
-import { Plus } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { projects } from "@/content/projects";
 import { profile } from "@/content/profile";
 import { ExternalLink } from "./external-link";
@@ -9,20 +9,21 @@ import { WebsitePreview } from "./website-preview";
 function ProjectLinks({ project }) {
   return (
     <>
-      {project.repoUrl && (
-        <ExternalLink
-          href={project.repoUrl}
-          label={`${project.title} GitHub repository`}
-        >
-          GitHub
-        </ExternalLink>
-      )}
       {project.publicLink && (
         <ExternalLink
           href={project.publicLink.href}
           label={`${project.title}: ${project.publicLink.label}`}
         >
           {project.publicLink.label}
+        </ExternalLink>
+      )}
+      {project.repoUrl && (
+        <ExternalLink
+          href={project.repoUrl}
+          label={`${project.title} GitHub repository`}
+          secondary={Boolean(project.publicLink)}
+        >
+          GitHub
         </ExternalLink>
       )}
     </>
@@ -56,27 +57,34 @@ function EngineeringProject({ project, featured }) {
       {project.preview && <GameplayPreview preview={project.preview} />}
       <div className="project-body">
         <p className="project-summary">{project.summary}</p>
-        {featured && technologies}
+        {featured && (
+          <>
+            <p className="contribution">{project.contribution}</p>
+            {technologies}
+          </>
+        )}
         <div className="project-links">
           <ProjectLinks project={project} />
         </div>
         <details>
           <summary>
             Engineering notes
-            <Plus size={15} aria-hidden="true" />
+            <ChevronDown size={16} aria-hidden="true" />
           </summary>
-          {!featured && (
-            <>
-              <p className="project-context">{project.context}</p>
-              {technologies}
-            </>
-          )}
-          <p className="contribution">{project.contribution}</p>
-          <ul className="engineering-notes">
-            {project.notes.map((note) => (
-              <li key={note}>{note}</li>
-            ))}
-          </ul>
+          <div className="notes-body">
+            {!featured && (
+              <>
+                <p className="project-context">{project.context}</p>
+                {technologies}
+                <p className="contribution">{project.contribution}</p>
+              </>
+            )}
+            <ul className="engineering-notes">
+              {project.notes.map((note) => (
+                <li key={note}>{note}</li>
+              ))}
+            </ul>
+          </div>
         </details>
       </div>
     </article>

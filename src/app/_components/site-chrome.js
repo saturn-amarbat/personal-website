@@ -9,8 +9,8 @@ const navigation = [
 
 export function SiteHeader() {
   return (
-    <header className="site-header">
-      <a className="wordmark" href="#home" aria-label={`${profile.name}, home`}>
+    <header id="top" className="site-header">
+      <a className="wordmark" href="#home" aria-label="SATURNMADE home">
         <svg
           className="saturn-mark"
           viewBox="0 0 40 40"
@@ -58,12 +58,9 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <p>© 2026 {profile.name}</p>
-      <nav aria-label="Footer navigation">
-        <a href="#projects">Projects</a>
-        <a href={profile.githubUrl}>GitHub</a>
-        <a href={profile.linkedinUrl}>LinkedIn</a>
-        <a href={`mailto:${profile.email}`}>Email</a>
-      </nav>
+      <a className="text-link" href="#top">
+        Back to top <span aria-hidden="true">↑</span>
+      </a>
     </footer>
   );
 }

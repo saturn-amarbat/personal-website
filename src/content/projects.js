@@ -3,7 +3,7 @@ export const projects = {
     {
       id: "stagecraft",
       title: "StageCraft",
-      contribution: "I fixed a context setup bug in the marketplace assistant.",
+      contribution: "I fixed how the chat assistant tracks earlier search results so it can add those items to the cart.",
       category: "Full-stack / Applied AI",
       context: "SparkHacks 2026 prototype",
       summary:
@@ -35,7 +35,7 @@ export const projects = {
         height: 432,
       },
       summary:
-        "An Android port of a rhythm runner with touch controls, audio latency calibration, and AdMob test ads.",
+        "A rhythm runner with touch controls on Android.",
       stack: ["Capacitor v6", "JavaScript", "p5.js", "Android"],
       repoUrl:
         "https://github.com/saturn-amarbat/Trials-Of-Tempo-The-Game-Mobile-version",
