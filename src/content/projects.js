@@ -125,9 +125,9 @@ export const projects = {
         "A personal creative project built around my electronic music alias, exploring visual identity, immersive web design, animation, and interactive audio.",
       artwork: {
         src: "/media/tethyn.webp",
-        alt: "The TETHYN wordmark framed by ice-blue crystals.",
+        alt: "The TETHYN homepage with its silver wordmark and blue booking button.",
         width: 480,
-        height: 204,
+        height: 270,
       },
       websitePreview: {
         src: "/media/tethyn-preview.mp4",
@@ -140,6 +140,18 @@ export const projects = {
     {
       id: "jipuk",
       title: "Digital Letter Website",
+      artwork: {
+        src: "/media/jipuk.webp",
+        alt: "A black envelope with a wax seal below the title A Little Letter.",
+        width: 480,
+        height: 270,
+      },
+      websitePreview: {
+        src: "/media/jipuk-preview.mp4",
+        poster: "/media/jipuk.webp",
+        width: 768,
+        height: 432,
+      },
       summary:
         "An interactive digital letter exploring CSS animations, typography, and visual storytelling.",
       repoUrl: "https://github.com/saturn-amarbat/Digital-Letter-Website",
@@ -148,6 +160,19 @@ export const projects = {
     {
       id: "st-detailing",
       title: "ST Detailing",
+      artwork: {
+        src: "/media/st-detailing.webp",
+        alt: "Three detailing packages with prices and included services.",
+        width: 480,
+        height: 270,
+      },
+      websitePreview: {
+        src: "/media/st-detailing-preview.mp4",
+        poster: "/media/st-detailing.webp",
+        width: 768,
+        height: 432,
+      },
+      publicLink: { href: "https://stchicagolanddetailing.com/", label: "Visit website" },
       summary: "A website for a Chicagoland mobile auto detailing business.",
       repoUrl: "https://github.com/saturn-amarbat/St-detailing-website",
     },
